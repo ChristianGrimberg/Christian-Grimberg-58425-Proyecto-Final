@@ -1,4 +1,5 @@
 [![Markdown Validation](https://github.com/ChristianGrimberg/Christian-Grimberg-58425-Proyecto-Final/actions/workflows/markdown-validation.yml/badge.svg?branch=main)](https://github.com/ChristianGrimberg/Christian-Grimberg-58425-Proyecto-Final/actions/workflows/markdown-validation.yml)
+[![.NET Validation](https://github.com/ChristianGrimberg/Christian-Grimberg-58425-Proyecto-Final/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/ChristianGrimberg/Christian-Grimberg-58425-Proyecto-Final/actions/workflows/dotnet.yml)
 
 # Primera entrega de tu Proyecto final
 

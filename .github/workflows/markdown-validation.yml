@@ -9,7 +9,7 @@ on:
       - '**.md'
       - '.markdownlint.json'
       - 'config/**'
-      paths-igonore:
+      paths-ignore:
       - '.github/**'
       - '.devcontainer/**'
       - '.vscode/**'

@@ -3,7 +3,7 @@
 
 # Primera entrega de tu Proyecto final
 
-> Debes entregar La primera pre entrega de tu proyecto final.
+> Debes entregar la primera pre-entrega de tu proyecto final.
 
 ## Primera entrega
 

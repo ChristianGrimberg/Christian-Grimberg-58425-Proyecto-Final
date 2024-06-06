@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace SistemaGestion;
+namespace SistemaGestionEntities;
 
 public class Producto
 {

@@ -1,14 +1,14 @@
 ﻿using System.Data.SqlClient;
 
-using SistemaGestionData;
+using SistemaGestionBussiness;
 
 using SistemaGestionEntities;
 
 namespace SistemaGestionUI;
 
-public static class GestorMenu
+internal static class GestorMenu
 {
-    public static bool MenuPrincipal(SqlConnection connection)
+    internal static bool MenuPrincipal(SqlConnection connection)
     {
         bool selection = true;
 
@@ -85,7 +85,7 @@ public static class GestorMenu
             case "1":
                 Console.Clear();
                 string userId = Input("Ingrese el ID del usuario a buscar");
-                Usuario user = UsuarioData.ObtenerUsuario(connection, Convert.ToInt32(userId));
+                Usuario user = UsuarioBussiness.ObtenerUsuario(connection, Convert.ToInt32(userId));
 
                 if (!user.IsEmpty)
                 {
@@ -95,11 +95,11 @@ public static class GestorMenu
                 }
                 break;
             case "2":
-                if (UsuarioData.ListarUsuarios(connection).Capacity > 0)
+                if (UsuarioBussiness.ListarUsuarios(connection).Capacity > 0)
                 {
                     Console.Clear();
                     Console.WriteLine("===========LISTADO USUARIOS==========\n");
-                    foreach (var item in UsuarioData.ListarUsuarios(connection))
+                    foreach (var item in UsuarioBussiness.ListarUsuarios(connection))
                     {
                         Console.WriteLine(item);
                     }
@@ -128,7 +128,7 @@ public static class GestorMenu
                     newUser.Mail = Console.ReadLine();
                     Console.WriteLine("==================================");
 
-                    if (!newUser.IsEmpty && UsuarioData.CrearUsuario(connection, newUser))
+                    if (!newUser.IsEmpty && UsuarioBussiness.CrearUsuario(connection, newUser))
                     {
                         Console.WriteLine("Usuario creado con éxito");
                     }
@@ -143,7 +143,7 @@ public static class GestorMenu
                 string agreeToUpdate;
                 string userIdToUpdate = Input("Ingrese el ID a modificar");
                 string fieldOption;
-                Usuario userToUpdate = UsuarioData.ObtenerUsuario(connection, Convert.ToInt32(userIdToUpdate));
+                Usuario userToUpdate = UsuarioBussiness.ObtenerUsuario(connection, Convert.ToInt32(userIdToUpdate));
 
                 if (!userToUpdate.IsEmpty)
                 {
@@ -164,7 +164,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo nombre: ");
                                 userToUpdate.Nombre = Console.ReadLine();
 
-                                if (!userToUpdate.IsEmpty && UsuarioData.ModificarUsuario(connection, userToUpdate))
+                                if (!userToUpdate.IsEmpty && UsuarioBussiness.ModificarUsuario(connection, userToUpdate))
                                 {
                                     Console.WriteLine("El nombre se modificó con éxito");
                                 }
@@ -177,7 +177,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo apellido: ");
                                 userToUpdate.Apellido = Console.ReadLine();
 
-                                if (!userToUpdate.IsEmpty && UsuarioData.ModificarUsuario(connection, userToUpdate))
+                                if (!userToUpdate.IsEmpty && UsuarioBussiness.ModificarUsuario(connection, userToUpdate))
                                 {
                                     Console.WriteLine("El apellido se modificó con éxito");
                                 }
@@ -190,7 +190,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo nombre de usuario: ");
                                 userToUpdate.NombreUsuario = Console.ReadLine();
 
-                                if (!userToUpdate.IsEmpty && UsuarioData.ModificarUsuario(connection, userToUpdate))
+                                if (!userToUpdate.IsEmpty && UsuarioBussiness.ModificarUsuario(connection, userToUpdate))
                                 {
                                     Console.WriteLine("El nombre del usuario se modificó con éxito");
                                 }
@@ -203,7 +203,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese la nueva contraseña: ");
                                 userToUpdate.Contraseña = Console.ReadLine();
 
-                                if (!userToUpdate.IsEmpty && UsuarioData.ModificarUsuario(connection, userToUpdate))
+                                if (!userToUpdate.IsEmpty && UsuarioBussiness.ModificarUsuario(connection, userToUpdate))
                                 {
                                     Console.WriteLine("La contraseña se modificó con éxito");
                                 }
@@ -216,7 +216,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo email: ");
                                 userToUpdate.Mail = Console.ReadLine();
 
-                                if (!userToUpdate.IsEmpty && UsuarioData.ModificarUsuario(connection, userToUpdate))
+                                if (!userToUpdate.IsEmpty && UsuarioBussiness.ModificarUsuario(connection, userToUpdate))
                                 {
                                     Console.WriteLine("El email se modificó con éxito");
                                 }
@@ -236,7 +236,7 @@ public static class GestorMenu
 
                 Console.Clear();
                 string userIdToDelete = Input("Ingrese el ID del usuario y toda su actividad a eliminar");
-                Usuario userToDelete = UsuarioData.ObtenerUsuario(connection, Convert.ToInt32(userIdToDelete));
+                Usuario userToDelete = UsuarioBussiness.ObtenerUsuario(connection, Convert.ToInt32(userIdToDelete));
 
                 if (!userToDelete.IsEmpty)
                 {
@@ -248,7 +248,7 @@ public static class GestorMenu
                     if (
                         !string.IsNullOrEmpty(agreeToDelete)
                         && agreeToDelete.ToUpper()[0] == 'S'
-                        && UsuarioData.EliminarUsuario(connection, userToDelete)
+                        && UsuarioBussiness.EliminarUsuario(connection, userToDelete)
                     )
                     {
                         Console.WriteLine("Se eliminó el usuario y toda su actividad");
@@ -295,7 +295,7 @@ public static class GestorMenu
             case "1":
                 Console.Clear();
                 string productId = Input("Ingrese el ID del producto a buscar");
-                Producto product = ProductoData.ObtenerProducto(connection, Convert.ToInt32(productId));
+                Producto product = ProductoBussiness.ObtenerProducto(connection, Convert.ToInt32(productId));
 
                 if (!product.IsEmpty)
                 {
@@ -305,11 +305,11 @@ public static class GestorMenu
                 }
                 break;
             case "2":
-                if (ProductoData.ListarProductos(connection).Capacity > 0)
+                if (ProductoBussiness.ListarProductos(connection).Capacity > 0)
                 {
                     Console.Clear();
                     Console.WriteLine("===========LISTADO PRODUCTOS==========\n");
-                    foreach (var item in ProductoData.ListarProductos(connection))
+                    foreach (var item in ProductoBussiness.ListarProductos(connection))
                     {
                         Console.WriteLine(item);
                     }
@@ -338,7 +338,7 @@ public static class GestorMenu
                     newProduct.IdUsuario = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("===================================");
 
-                    if (!newProduct.IsEmpty && ProductoData.CrearProducto(connection, newProduct))
+                    if (!newProduct.IsEmpty && ProductoBussiness.CrearProducto(connection, newProduct))
                     {
                         Console.WriteLine("Producto creado con éxito");
                     }
@@ -353,7 +353,7 @@ public static class GestorMenu
                 string agreeToUpdate;
                 string productIdToUpdate = Input("Ingrese el ID a modificar");
                 string fieldOption;
-                Producto productToUpdate = ProductoData.ObtenerProducto(connection, Convert.ToInt32(productIdToUpdate));
+                Producto productToUpdate = ProductoBussiness.ObtenerProducto(connection, Convert.ToInt32(productIdToUpdate));
 
                 if (!productToUpdate.IsEmpty)
                 {
@@ -374,7 +374,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese la nueva descripcion: ");
                                 productToUpdate.Descripcion = Console.ReadLine();
 
-                                if (!productToUpdate.IsEmpty && ProductoData.ModificarProducto(connection, productToUpdate))
+                                if (!productToUpdate.IsEmpty && ProductoBussiness.ModificarProducto(connection, productToUpdate))
                                 {
                                     Console.WriteLine("La descipción se modificó con éxito");
                                 }
@@ -387,7 +387,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo costo: ");
                                 productToUpdate.Costo = Convert.ToDecimal(Console.ReadLine());
 
-                                if (!productToUpdate.IsEmpty && ProductoData.ModificarProducto(connection, productToUpdate))
+                                if (!productToUpdate.IsEmpty && ProductoBussiness.ModificarProducto(connection, productToUpdate))
                                 {
                                     Console.WriteLine("El costo se modificó con éxito");
                                 }
@@ -400,7 +400,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo precio de venta: ");
                                 productToUpdate.PrecioVenta = Convert.ToDecimal(Console.ReadLine());
 
-                                if (!productToUpdate.IsEmpty && ProductoData.ModificarProducto(connection, productToUpdate))
+                                if (!productToUpdate.IsEmpty && ProductoBussiness.ModificarProducto(connection, productToUpdate))
                                 {
                                     Console.WriteLine("El precio de venta se modificó con éxito");
                                 }
@@ -413,7 +413,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo stock: ");
                                 productToUpdate.Stock = Convert.ToInt32(Console.ReadLine());
 
-                                if (!productToUpdate.IsEmpty && ProductoData.ModificarProducto(connection, productToUpdate))
+                                if (!productToUpdate.IsEmpty && ProductoBussiness.ModificarProducto(connection, productToUpdate))
                                 {
                                     Console.WriteLine("El stock se modificó con éxito");
                                 }
@@ -426,7 +426,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo ID de usuario: ");
                                 productToUpdate.IdUsuario = Convert.ToInt32(Console.ReadLine());
 
-                                if (!productToUpdate.IsEmpty && ProductoData.ModificarProducto(connection, productToUpdate))
+                                if (!productToUpdate.IsEmpty && ProductoBussiness.ModificarProducto(connection, productToUpdate))
                                 {
                                     Console.WriteLine("El ID de usuario se modificó con éxito");
                                 }
@@ -446,7 +446,7 @@ public static class GestorMenu
 
                 Console.Clear();
                 string productIdToDelete = Input("Ingrese el ID del producto y toda su actividad a eliminar");
-                Producto productToDelete = ProductoData.ObtenerProducto(connection, Convert.ToInt32(productIdToDelete));
+                Producto productToDelete = ProductoBussiness.ObtenerProducto(connection, Convert.ToInt32(productIdToDelete));
 
                 if (!productToDelete.IsEmpty)
                 {
@@ -458,7 +458,7 @@ public static class GestorMenu
                     if (
                         !string.IsNullOrEmpty(agreeToDelete)
                         && agreeToDelete.ToUpper()[0] == 'S'
-                        && ProductoData.EliminarProducto(connection, productToDelete)
+                        && ProductoBussiness.EliminarProducto(connection, productToDelete)
                     )
                     {
                         Console.WriteLine("Se eliminó el producto y toda su actividad");
@@ -503,7 +503,7 @@ public static class GestorMenu
             case "1":
                 Console.Clear();
                 string productId = Input("Ingrese el ID del producto vendido a buscar");
-                ProductoVendido product = ProductoVendidoData.ObtenerProductoVendido(connection, Convert.ToInt32(productId));
+                ProductoVendido product = ProductoVendidoBussiness.ObtenerProductoVendido(connection, Convert.ToInt32(productId));
 
                 if (!product.IsEmpty)
                 {
@@ -513,11 +513,11 @@ public static class GestorMenu
                 }
                 break;
             case "2":
-                if (ProductoVendidoData.ListarProductosVendidos(connection).Capacity > 0)
+                if (ProductoVendidoBussiness.ListarProductosVendidos(connection).Capacity > 0)
                 {
                     Console.Clear();
                     Console.WriteLine("===========LISTADO DE PRODUCTOS VENDIDOS==========\n");
-                    foreach (var item in ProductoVendidoData.ListarProductosVendidos(connection))
+                    foreach (var item in ProductoVendidoBussiness.ListarProductosVendidos(connection))
                     {
                         Console.WriteLine(item);
                     }
@@ -542,7 +542,7 @@ public static class GestorMenu
                     newProduct.IdVenta = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("==============================================");
 
-                    if (!newProduct.IsEmpty && ProductoVendidoData.CrearProductoVendido(connection, newProduct))
+                    if (!newProduct.IsEmpty && ProductoVendidoBussiness.CrearProductoVendido(connection, newProduct))
                     {
                         Console.WriteLine("Producto vendido ingresado con éxito");
                     }
@@ -557,7 +557,7 @@ public static class GestorMenu
                 string agreeToUpdate;
                 string productIdToUpdate = Input("Ingrese el ID a modificar");
                 string fieldOption;
-                ProductoVendido productToUpdate = ProductoVendidoData.ObtenerProductoVendido(connection, Convert.ToInt32(productIdToUpdate));
+                ProductoVendido productToUpdate = ProductoVendidoBussiness.ObtenerProductoVendido(connection, Convert.ToInt32(productIdToUpdate));
 
                 if (!productToUpdate.IsEmpty)
                 {
@@ -578,7 +578,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo stock: ");
                                 productToUpdate.Stock = Convert.ToInt32(Console.ReadLine());
 
-                                if (!productToUpdate.IsEmpty && ProductoVendidoData.ModificarProductoVendido(connection, productToUpdate))
+                                if (!productToUpdate.IsEmpty && ProductoVendidoBussiness.ModificarProductoVendido(connection, productToUpdate))
                                 {
                                     Console.WriteLine("El stock se modificó con éxito");
                                 }
@@ -591,7 +591,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo ID de producto: ");
                                 productToUpdate.IdProducto = Convert.ToInt32(Console.ReadLine());
 
-                                if (!productToUpdate.IsEmpty && ProductoVendidoData.ModificarProductoVendido(connection, productToUpdate))
+                                if (!productToUpdate.IsEmpty && ProductoVendidoBussiness.ModificarProductoVendido(connection, productToUpdate))
                                 {
                                     Console.WriteLine("El ID de producto se modificó con éxito");
                                 }
@@ -604,7 +604,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo ID de venta: ");
                                 productToUpdate.IdVenta = Convert.ToInt32(Console.ReadLine());
 
-                                if (!productToUpdate.IsEmpty && ProductoVendidoData.ModificarProductoVendido(connection, productToUpdate))
+                                if (!productToUpdate.IsEmpty && ProductoVendidoBussiness.ModificarProductoVendido(connection, productToUpdate))
                                 {
                                     Console.WriteLine("El ID de venta se modificó con éxito");
                                 }
@@ -624,7 +624,7 @@ public static class GestorMenu
 
                 Console.Clear();
                 string productIdToDelete = Input("Ingrese el ID del producto vendido y toda su actividad a eliminar");
-                ProductoVendido productToDelete = ProductoVendidoData.ObtenerProductoVendido(connection, Convert.ToInt32(productIdToDelete));
+                ProductoVendido productToDelete = ProductoVendidoBussiness.ObtenerProductoVendido(connection, Convert.ToInt32(productIdToDelete));
 
                 if (!productToDelete.IsEmpty)
                 {
@@ -636,7 +636,7 @@ public static class GestorMenu
                     if (
                         !string.IsNullOrEmpty(agreeToDelete)
                         && agreeToDelete.ToUpper()[0] == 'S'
-                        && ProductoVendidoData.EliminarProductoVendido(connection, productToDelete)
+                        && ProductoVendidoBussiness.EliminarProductoVendido(connection, productToDelete)
                     )
                     {
                         Console.WriteLine("Se eliminó el producto vendido y toda su actividad");
@@ -680,7 +680,7 @@ public static class GestorMenu
             case "1":
                 Console.Clear();
                 string ventaId = Input("Ingrese el ID de la venta a buscar");
-                Venta venta = VentaData.ObtenerVenta(connection, Convert.ToInt32(ventaId));
+                Venta venta = VentaBussiness.ObtenerVenta(connection, Convert.ToInt32(ventaId));
 
                 if (!venta.IsEmpty)
                 {
@@ -690,11 +690,11 @@ public static class GestorMenu
                 }
                 break;
             case "2":
-                if (VentaData.ListarVentas(connection).Capacity > 0)
+                if (VentaBussiness.ListarVentas(connection).Capacity > 0)
                 {
                     Console.Clear();
                     Console.WriteLine("===========LISTADO DE VENTAS==========\n");
-                    foreach (var item in VentaData.ListarVentas(connection))
+                    foreach (var item in VentaBussiness.ListarVentas(connection))
                     {
                         Console.WriteLine(item);
                     }
@@ -717,7 +717,7 @@ public static class GestorMenu
                     newVenta.IdUsuario = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("=======================================");
 
-                    if (!newVenta.IsEmpty && VentaData.CrearVenta(connection, newVenta))
+                    if (!newVenta.IsEmpty && VentaBussiness.CrearVenta(connection, newVenta))
                     {
                         Console.WriteLine("Venta ingresada con éxito");
                     }
@@ -732,7 +732,7 @@ public static class GestorMenu
                 string agreeToUpdate;
                 string ventaIdToUpdate = Input("Ingrese el ID a modificar");
                 string fieldOption;
-                Venta ventaToUpdate = VentaData.ObtenerVenta(connection, Convert.ToInt32(ventaIdToUpdate));
+                Venta ventaToUpdate = VentaBussiness.ObtenerVenta(connection, Convert.ToInt32(ventaIdToUpdate));
 
                 if (!ventaToUpdate.IsEmpty)
                 {
@@ -753,7 +753,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo comentario: ");
                                 ventaToUpdate.Comentarios = Console.ReadLine();
 
-                                if (!ventaToUpdate.IsEmpty && VentaData.ModificarVenta(connection, ventaToUpdate))
+                                if (!ventaToUpdate.IsEmpty && VentaBussiness.ModificarVenta(connection, ventaToUpdate))
                                 {
                                     Console.WriteLine("El comentario se modificó con éxito");
                                 }
@@ -766,7 +766,7 @@ public static class GestorMenu
                                 Console.Write("Ingrese el nuevo ID de usuario: ");
                                 ventaToUpdate.IdUsuario = Convert.ToInt32(Console.ReadLine());
 
-                                if (!ventaToUpdate.IsEmpty && VentaData.ModificarVenta(connection, ventaToUpdate))
+                                if (!ventaToUpdate.IsEmpty && VentaBussiness.ModificarVenta(connection, ventaToUpdate))
                                 {
                                     Console.WriteLine("El ID de usuario se modificó con éxito");
                                 }
@@ -786,7 +786,7 @@ public static class GestorMenu
 
                 Console.Clear();
                 string ventaIdToDelete = Input("Ingrese el ID de la venta y toda su actividad a eliminar");
-                Venta ventaToDelete = VentaData.ObtenerVenta(connection, Convert.ToInt32(ventaIdToDelete));
+                Venta ventaToDelete = VentaBussiness.ObtenerVenta(connection, Convert.ToInt32(ventaIdToDelete));
 
                 if (!ventaToDelete.IsEmpty)
                 {
@@ -798,7 +798,7 @@ public static class GestorMenu
                     if (
                         !string.IsNullOrEmpty(agreeToDelete)
                         && agreeToDelete.ToUpper()[0] == 'S'
-                        && VentaData.EliminarVenta(connection, ventaToDelete)
+                        && VentaBussiness.EliminarVenta(connection, ventaToDelete)
                     )
                     {
                         Console.WriteLine("Se eliminó la venta y toda su actividad");

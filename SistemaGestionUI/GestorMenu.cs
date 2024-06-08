@@ -4,11 +4,11 @@ using SistemaGestionData;
 
 using SistemaGestionEntities;
 
-namespace SistemaGestionData;
+namespace SistemaGestionUI;
 
-internal static class GestorMenu
+public static class GestorMenu
 {
-    internal static bool MenuPrincipal(SqlConnection connection)
+    public static bool MenuPrincipal(SqlConnection connection)
     {
         bool selection = true;
 

@@ -126,7 +126,7 @@ public class Usuario
 
     public Usuario()
     {
-        if(
+        if (
             string.IsNullOrEmpty(nombre)
             && string.IsNullOrEmpty(apellido)
             && string.IsNullOrEmpty(nombreUsuario)

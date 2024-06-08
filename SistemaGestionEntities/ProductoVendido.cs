@@ -88,7 +88,7 @@ public class ProductoVendido
 
     public ProductoVendido()
     {
-        if(
+        if (
             idProducto == 0
             && stock == 0
             && idVenta == 0

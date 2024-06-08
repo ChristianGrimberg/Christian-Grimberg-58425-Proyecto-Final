@@ -69,7 +69,7 @@ public class Venta
 
     public Venta()
     {
-        if(
+        if (
             string.IsNullOrEmpty(comentarios)
             && idUsuario == 0
         )

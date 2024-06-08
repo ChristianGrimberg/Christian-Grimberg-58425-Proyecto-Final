@@ -126,7 +126,7 @@ public class Producto
 
     public Producto()
     {
-        if(
+        if (
             string.IsNullOrEmpty(descripcion)
             && costo == 0
             && precioVenta == 0

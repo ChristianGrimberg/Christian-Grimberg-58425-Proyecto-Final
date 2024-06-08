@@ -4,9 +4,9 @@ using SistemaGestionEntities;
 
 namespace SistemaGestionData;
 
-internal static class UsuarioData
+public static class UsuarioData
 {
-    internal static Usuario ObtenerUsuario(SqlConnection connection, int id)
+    public static Usuario ObtenerUsuario(SqlConnection connection, int id)
     {
         Usuario user = new Usuario();
         string queryGetUserByID = $@"
@@ -27,7 +27,7 @@ internal static class UsuarioData
             {
                 using (SqlDataReader dataReader = command.ExecuteReader())
                 {
-                    if(dataReader.Read())
+                    if (dataReader.Read())
                     {
                         user.Id = Convert.ToInt32(dataReader["Id"]);
                         user.Nombre = dataReader["Nombre"].ToString();
@@ -51,7 +51,7 @@ internal static class UsuarioData
         return user;
     }
 
-    internal static List<Usuario> ListarUsuarios(SqlConnection connection)
+    public static List<Usuario> ListarUsuarios(SqlConnection connection)
     {
         List<Usuario> listado = new List<Usuario>();
         string queryGetUsers = $@"
@@ -94,7 +94,7 @@ internal static class UsuarioData
         return listado;
     }
 
-    internal static bool CrearUsuario(SqlConnection connection, Usuario user)
+    public static bool CrearUsuario(SqlConnection connection, Usuario user)
     {
         bool created = false;
         string queryInsertUser = $@"
@@ -129,7 +129,7 @@ internal static class UsuarioData
         return created;
     }
 
-    internal static bool ModificarUsuario(SqlConnection connection, Usuario user)
+    public static bool ModificarUsuario(SqlConnection connection, Usuario user)
     {
         bool created = false;
         string queryUpdatetUser = $@"
@@ -158,7 +158,7 @@ internal static class UsuarioData
         return created;
     }
 
-    internal static bool EliminarUsuario(SqlConnection connection, Usuario user)
+    public static bool EliminarUsuario(SqlConnection connection, Usuario user)
     {
         bool created = false;
         string queryDeleteUser = $@"

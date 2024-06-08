@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestionEntities", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestionData", "SistemaGestionData\SistemaGestionData.csproj", "{46C205AC-4259-46DC-B015-3D157C626C3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaGestionBussiness", "SistemaGestionBussiness\SistemaGestionBussiness.csproj", "{D3ABDE37-3179-4223-B850-B027764A088A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{46C205AC-4259-46DC-B015-3D157C626C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46C205AC-4259-46DC-B015-3D157C626C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46C205AC-4259-46DC-B015-3D157C626C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3ABDE37-3179-4223-B850-B027764A088A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3ABDE37-3179-4223-B850-B027764A088A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3ABDE37-3179-4223-B850-B027764A088A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3ABDE37-3179-4223-B850-B027764A088A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

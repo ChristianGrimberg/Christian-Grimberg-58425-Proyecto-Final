@@ -1,5 +1,7 @@
 ﻿using System.Data.SqlClient;
 
+using SistemaGestionData;
+
 using SistemaGestionEntities;
 
 namespace SistemaGestionData;

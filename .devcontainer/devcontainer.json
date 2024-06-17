@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/dotnet-mssql
 {
-	"name": "Curso de C# - Comisión 58425 - CoderHouse",
+	"name": "Proyecto final C# - Comisión 58425 - CoderHouse",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
@@ -23,7 +23,7 @@
 						"user": "sa",
 						"password": "P@ssw0rd",
 						"emptyPasswordInput": false,
-						"savePassword": false,
+						"savePassword": true,
 						"profileName": "mssql-container"
 					}
 				]
@@ -36,18 +36,19 @@
 				"eamodio.gitlens",
 				"ms-dotnettools.csdevkit",
 				"github.vscode-github-actions",
-				"DavidAnson.vscode-markdownlint"
+				"DavidAnson.vscode-markdownlint",
+				"rangav.vscode-thunder-client"
 			]
 		}
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [5000, 5001],
-	// "portsAttributes": {
-	//		"5001": {
-	//			"protocol": "https"
-	//		}
-	// }
+	"forwardPorts": [8080, 8081],
+	"portsAttributes": {
+		"8081": {
+			"protocol": "https"
+		}
+	},
 
 	// postCreateCommand.sh parameters: $1=SA password, $2=dacpac path, $3=sql script(s) path
 	"postCreateCommand": "bash .devcontainer/mssql/postCreateCommand.sh 'P@ssw0rd' './bin/Debug/' './.devcontainer/mssql/'"

@@ -1,11 +1,52 @@
 [![Markdown Validation](https://github.com/ChristianGrimberg/Christian-Grimberg-58425-Proyecto-Final/actions/workflows/markdown-validation.yml/badge.svg?branch=main)](https://github.com/ChristianGrimberg/Christian-Grimberg-58425-Proyecto-Final/actions/workflows/markdown-validation.yml)
 [![.NET Validation](https://github.com/ChristianGrimberg/Christian-Grimberg-58425-Proyecto-Final/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/ChristianGrimberg/Christian-Grimberg-58425-Proyecto-Final/actions/workflows/dotnet.yml)
 
+# Entrega del Proyecto Final
+
+> Entrega definitiva de tu proyecto de fin de cursada.
+
+## Entrega Final
+
+### Objetivos generales
+
+* Entregar el proyecto funcionando con los Endpoint con los métodos especificados en las clases 14 y 15.
+
+### Objetivos específicos
+
+* Se evaluará al alumno y se le dará una devolución de su desempeño en la cursada tanto como así en el proyecto.
+
+### Formato
+
+* Link del repositorio del proyecto en Github. (Subir la versión entregable del código a una rama llamada “master”)
+
+### Sugerencias
+
+* Se debe comprobar que todos los puntos a resolver estén completados
+
+### Se debe entregar una API que siga las siguientes instrucciones
+
+* Traer Nombre
+* ~~Inicio de sesión~~
+* Crear usuario
+* Modificar Usuario
+* Traer usuario
+* Eliminar usuario
+* Crear producto
+* Modificar producto
+* Eliminar producto
+* Cargar Venta
+* Eliminar venta
+* Traer productos
+* Traer Productos Vendidos
+* Traer ventas
+
 # Primera entrega de tu Proyecto final
 
 > Debes entregar la primera pre-entrega de tu proyecto final.
 
 ## Primera entrega
+
+> Entrega realizada: <https://github.com/ChristianGrimberg/Christian-Grimberg-58425-Proyecto-Final/releases/tag/v1.0.0>
 
 ### Objetivos generales
 

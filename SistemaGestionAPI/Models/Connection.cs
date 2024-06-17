@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace Christian_Grimberg_58425_Proyecto-Final;
+namespace Christian_Grimberg_58425_Proyecto_Final;
 
 public static class Connection
 {

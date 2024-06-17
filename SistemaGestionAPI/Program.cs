@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 using SistemaGestionData;
 
-namespace Christian_Grimberg_58425_Proyecto-Final;
+namespace Christian_Grimberg_58425_Proyecto_Final;
 
 public class Program
 {

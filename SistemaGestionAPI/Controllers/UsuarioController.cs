@@ -6,7 +6,7 @@ using SistemaGestionBussiness;
 
 using SistemaGestionEntities;
 
-namespace Christian_Grimberg_58425_Proyecto-Final.Controllers;
+namespace Christian_Grimberg_58425_Proyecto_Final.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -4,7 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>Christian_Grimberg_58425_Proyecto_Final</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

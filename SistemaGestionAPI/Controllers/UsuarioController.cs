@@ -4,7 +4,9 @@ using SistemaGestionBussiness;
 
 using SistemaGestionEntities;
 
-namespace Christian_Grimberg_58425_Proyecto_Final.Controllers;
+using SistemaGestionAPI.Models;
+
+namespace SistemaGestionAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -21,8 +23,9 @@ public class UsuarioController : ControllerBase
   [HttpGet("{id}")]
   public IActionResult ObtenerUsuarioPorId(int id)
   {
-      var user = UsuarioBussiness.ObtenerUsuario(Connection.DatabaseConnection, id);
-      return user.Id == 0 ? NotFound() : Ok(user);
+    var user = UsuarioBussiness.ObtenerUsuario(Connection.DatabaseConnection, id);
+
+    return user.Id == 0 ? NotFound() : Ok(user);
   }
 
   [HttpPost(Name = "CrearUsuario")]

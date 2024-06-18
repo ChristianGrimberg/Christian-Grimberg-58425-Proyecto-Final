@@ -1,10 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-using SistemaGestionBussiness;
-
-using SistemaGestionEntities;
-
-namespace Christian_Grimberg_58425_Proyecto_Final;
+namespace SistemaGestionAPI.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

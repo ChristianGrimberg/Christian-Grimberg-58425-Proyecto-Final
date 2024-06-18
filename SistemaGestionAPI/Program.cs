@@ -1,9 +1,8 @@
-
-using System.Data.SqlClient;
-
 using SistemaGestionData;
 
-namespace Christian_Grimberg_58425_Proyecto_Final;
+using SistemaGestionAPI.Models;
+
+namespace SistemaGestionAPI;
 
 public class Program
 {

@@ -12,9 +12,41 @@ namespace SistemaGestionAPI.Controllers;
 [Route("api/[controller]")]
 public class VentaController : ControllerBase
 {
-  [HttpPost(Name = "CargarVenta")]
-  public void CargarVenta(Venta venta)
+  [HttpGet(Name = "ObtenerVentas")]
+  public IActionResult ObtenerVentas()
   {
-    VentaBussiness.CrearVenta(Connection.DatabaseConnection, venta);
+    var sales = VentaBussiness.ListarVentas(Connection.DatabaseConnection);
+
+    return sales.Count == 0 ? NotFound() : Ok(sales.ToArray());
+  }
+
+  [HttpGet("{id}")]
+  public IActionResult ObtenerVentaPorId(int id)
+  {
+    var sale = VentaBussiness.ObtenerVenta(Connection.DatabaseConnection, id);
+
+    return sale.Id == 0 ? NotFound() : Ok(sale);
+  }
+
+  [HttpPost(Name = "CargarVenta")]
+  public IActionResult CargarVenta([FromBody] Venta venta)
+  {
+    return VentaBussiness.CrearVenta(Connection.DatabaseConnection, venta) == false ? NotFound() : Ok(venta);
+  }
+
+  [HttpPut(Name = "ModificarVenta")]
+  public IActionResult ModificarVenta([FromBody] Venta venta)
+  {
+    var sale = VentaBussiness.ObtenerVenta(Connection.DatabaseConnection, venta.Id);
+
+    return sale.Id == 0 ? NotFound() : Ok(VentaBussiness.ModificarVenta(Connection.DatabaseConnection, venta));
+  }
+
+  [HttpDelete(Name = "EliminarVenta")]
+  public IActionResult EliminarVenta([FromBody] int id)
+  {
+    var sale = VentaBussiness.ObtenerVenta(Connection.DatabaseConnection, id);
+
+    return sale.Id == 0 ? NotFound() : Ok(VentaBussiness.EliminarVenta(Connection.DatabaseConnection, sale));
   }
 }

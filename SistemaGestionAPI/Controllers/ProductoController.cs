@@ -12,21 +12,41 @@ namespace SistemaGestionAPI.Controllers;
 [Route("api/[controller]")]
 public class ProductoController : ControllerBase
 {
-  [HttpPost(Name = "CrearProducto")]
-  public void CrearProducto([FromBody] Producto producto)
+  [HttpGet(Name = "ObtenerProductos")]
+  public IActionResult ObtenerProductos()
   {
-    ProductoBussiness.CrearProducto(Connection.DatabaseConnection, producto);
+    var products = ProductoBussiness.ListarProductos(Connection.DatabaseConnection);
+
+    return products.Count == 0 ? NotFound() : Ok(products.ToArray());
+  }
+
+  [HttpGet("{id}")]
+  public IActionResult ObtenerProductoPorId(int id)
+  {
+    var product = ProductoBussiness.ObtenerProducto(Connection.DatabaseConnection, id);
+
+    return product.Id == 0 ? NotFound() : Ok(product);
+  }
+
+  [HttpPost(Name = "CrearProducto")]
+  public IActionResult CrearProducto([FromBody] Producto producto)
+  {
+    return ProductoBussiness.CrearProducto(Connection.DatabaseConnection, producto) == false ? NotFound() : Ok(producto);
   }
 
   [HttpPut(Name = "ModificarProducto")]
-  public void ModificarProducto([FromBody] Producto producto)
+  public IActionResult ModificarProducto([FromBody] Producto producto)
   {
-    ProductoBussiness.ModificarProducto(Connection.DatabaseConnection, producto);
+    var product = ProductoBussiness.ObtenerProducto(Connection.DatabaseConnection, producto.Id);
+
+    return product.Id == 0 ? NotFound() : Ok(ProductoBussiness.ModificarProducto(Connection.DatabaseConnection, producto));
   }
 
   [HttpDelete(Name = "EliminarProducto")]
-  public void EliminarProducto([FromBody] int id)
+  public IActionResult EliminarProducto([FromBody] int id)
   {
-    ProductoBussiness.EliminarProducto(Connection.DatabaseConnection, ProductoBussiness.ObtenerProducto(Connection.DatabaseConnection, id));
+    var product = ProductoBussiness.ObtenerProducto(Connection.DatabaseConnection, id);
+
+    return product.Id == 0 ? NotFound() : Ok(ProductoBussiness.EliminarProducto(Connection.DatabaseConnection, product));
   }
 }

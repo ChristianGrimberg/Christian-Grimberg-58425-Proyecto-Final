@@ -1,6 +1,4 @@
-﻿using System.Data.SqlClient;
-
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using SistemaGestionBussiness;
 
@@ -13,8 +11,6 @@ namespace Christian_Grimberg_58425_Proyecto_Final.Controllers;
 public class UsuarioController : ControllerBase
 {
   [HttpGet(Name = "ObtenerUsuarios")]
-  [ProducesResponseType<List<Usuario>>(StatusCodes.Status200OK)]
-  [ProducesResponseType(StatusCodes.Status404NotFound)]
   public IActionResult ObtenerUsuarios()
   {
     var users = UsuarioBussiness.ListarUsuarios(Connection.DatabaseConnection);
@@ -23,17 +19,31 @@ public class UsuarioController : ControllerBase
   }
 
   [HttpGet("{id}")]
-  [ProducesResponseType(StatusCodes.Status200OK)]
-  [ProducesResponseType(StatusCodes.Status404NotFound)]
-  public ActionResult<Usuario> ObtenerUsuarioPorId(int id)
+  public IActionResult ObtenerUsuarioPorId(int id)
   {
       var user = UsuarioBussiness.ObtenerUsuario(Connection.DatabaseConnection, id);
-      return user.Id == 0 ? NotFound() : user;
+      return user.Id == 0 ? NotFound() : Ok(user);
+  }
+
+  [HttpPost(Name = "CrearUsuario")]
+  public IActionResult CrearUsuario([FromBody] Usuario usuario)
+  {
+    return UsuarioBussiness.CrearUsuario(Connection.DatabaseConnection, usuario) == false ? NotFound() : Ok(usuario);
   }
 
   [HttpPut(Name = "ModificarUsuario")]
-  public void ModificarUsuario([FromBody] Usuario usuario)
+  public IActionResult ModificarUsuario([FromBody] Usuario usuario)
   {
-    UsuarioBussiness.ModificarUsuario(Connection.DatabaseConnection, usuario);
+    var user = UsuarioBussiness.ObtenerUsuario(Connection.DatabaseConnection, usuario.Id);
+
+    return user.Id == 0 ? NotFound() : Ok(UsuarioBussiness.ModificarUsuario(Connection.DatabaseConnection, usuario));
+  }
+
+  [HttpDelete(Name = "EliminarUsuario")]
+  public IActionResult EliminarUsuario([FromBody] int id)
+  {
+    var user = UsuarioBussiness.ObtenerUsuario(Connection.DatabaseConnection, id);
+
+    return user.Id == 0 ? NotFound() : Ok(UsuarioBussiness.EliminarUsuario(Connection.DatabaseConnection, user));
   }
 }

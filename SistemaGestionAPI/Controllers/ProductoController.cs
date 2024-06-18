@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+using SistemaGestionAPI.Models;
+
 using SistemaGestionBussiness;
 
 using SistemaGestionEntities;
-
-using SistemaGestionAPI.Models;
 
 namespace SistemaGestionAPI.Controllers;
 

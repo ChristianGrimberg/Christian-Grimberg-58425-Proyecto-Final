@@ -1,6 +1,6 @@
-using SistemaGestionData;
-
 using SistemaGestionAPI.Models;
+
+using SistemaGestionData;
 
 namespace SistemaGestionAPI;
 
